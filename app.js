@@ -97,9 +97,13 @@ function render() {
   document.getElementById('framingText').textContent = entry.framing;
   document.getElementById('promptText').textContent = entry.prompt;
   document.getElementById('copiedMsg').textContent = '';
+
+  const nextBtn = document.getElementById('nextBtn');
+  if (nextBtn) nextBtn.disabled = currentOffset >= 0;
 }
 
 function navigate(dir) {
+  if (dir > 0 && currentOffset >= 0) return;
   currentOffset += dir;
   render();
 }
